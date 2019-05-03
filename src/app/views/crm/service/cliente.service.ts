@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Cliente, RegraPontuacao } from './cliente.model';
+import { Cliente, RegraPontuacao, ClienteAPI, RegraPontuacaoAPI } from './cliente.model';
 import { ApiService, HttpResponseMessage } from './../../../shared/api.service';
 import { environment } from './../../../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -16,8 +16,8 @@ export class ClienteService {
 
     constructor(private apiService: ApiService<any>) { }
 
-    getClientes(page: number): Observable<Cliente[]> {
-        return this.apiService.findAll(`${this._LIST_CLIENTE}/${page}`);
+    getClientes(page: number): Observable<ClienteAPI> {
+        return this.apiService.findOne(`${this._LIST_CLIENTE}/${page}`);
     }
 
     getCliente(id: number): Observable<Cliente> {
@@ -28,8 +28,8 @@ export class ClienteService {
         return this.apiService.save(data, this._SAVE_CLIENTE);
     }
 
-    getRegras(page: number): Observable<RegraPontuacao[]> {
-        return this.apiService.findAll(`${this._LIST_REGRA}/${page}`);
+    getRegras(page: number): Observable<RegraPontuacaoAPI> {
+        return this.apiService.findOne(`${this._LIST_REGRA}/${page}`);
     }
 
     getRegra(id: number): Observable<RegraPontuacao> {

@@ -1,3 +1,47 @@
-<p>
-  regra-pontuacao works!
-</p>
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade"*ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>    
+  </div>
+
+  <div class="example-table-container">
+
+    <table mat-table [dataSource]="data" class="example-table">
+      
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="valorInicio">
+        <th mat-header-cell *matHeaderCellDef>Valor Início</th>
+        <td mat-cell *matCellDef="let row">{{row.valorInicio}}</td>
+      </ng-container>     
+
+      <ng-container matColumnDef="valorFim">
+        <th mat-header-cell *matHeaderCellDef>Valor Fim</th>
+        <td mat-cell *matCellDef="let row">{{row.valorFim}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="inicio">
+        <th mat-header-cell *matHeaderCellDef>Início</th>
+        <td mat-cell *matCellDef="let row">{{row.inicio}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fim">
+        <th mat-header-cell *matHeaderCellDef>Fim</th>
+        <td mat-cell *matCellDef="let row">{{row.fim}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="pontos">
+        <th mat-header-cell *matHeaderCellDef>Pontos</th>
+        <td mat-cell *matCellDef="let row">{{row.pontos}}</td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+</div>

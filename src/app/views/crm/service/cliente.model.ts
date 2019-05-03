@@ -1,3 +1,44 @@
+export interface ClienteAPI {
+    content: Cliente[];
+    pageable: Pageable;
+    totalPages: number;
+    totalElements: number;
+    last: false;
+    size: number;
+    numberOfElements: number;
+    first: true;
+    number: number;
+    sort: Sort;
+}
+
+export interface RegraPontuacaoAPI {
+    content: RegraPontuacao[];
+    pageable: Pageable;
+    totalPages: number;
+    totalElements: number;
+    last: false;
+    size: number;
+    numberOfElements: number;
+    first: true;
+    number: number;
+    sort: Sort;
+}
+
+export interface Pageable {
+    sort: Sort;
+    offset: number;
+    pageSize: number;
+    pageNumber: number;
+    paged: true;
+    unpaged: boolean;
+}
+
+
+export interface Sort {
+    sorted: boolean;
+    unsorted: boolean;
+}
+
 export interface Cliente {
     id: number;
     nome: string;
@@ -24,3 +65,7 @@ export interface RegraPontuacao {
     fim: string; // date
     pontos: number; // int
 }
+
+
+
+
