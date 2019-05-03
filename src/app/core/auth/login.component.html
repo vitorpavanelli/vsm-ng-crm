@@ -1,0 +1,24 @@
+<div class="row justify-content-center" style="margin-top: 100px;">  
+
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  
+  <div class="col mat-elevation-z2" style="padding-top: 10px; max-width: 240px;" *ngIf="!isLoading">     
+      <img src="../../../assets/logo-vsm.png" width="200px" /> 
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field style="width: 100%;">
+          <input matInput placeholder="Login" formControlName="login">          
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-error *ngIf="form.get('login').touched && form.get('login').hasError('required')">Enter Login</mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%;">
+            <input matInput placeholder="Password" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+            <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="form.get('password').touched && form.get('password').hasError('required')">Enter Password</mat-error>
+        </mat-form-field>    
+        
+        <button type="submit" mat-raised-button style="float: right; margin-bottom: 10px;" color="primary" [disabled]="!form.valid">Login</button>               
+      </form>
+  </div>
+</div>
+

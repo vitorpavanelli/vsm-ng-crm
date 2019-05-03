@@ -1,0 +1,104 @@
+<mat-toolbar color="primary" class="mat-elevation-z6">
+  <mat-toolbar-row>
+    <!-- <img src="../assets/logo3.png" width="95" style="margin-right: 29px;" /> -->
+
+    <button mat-icon-button (click)="sidenav.toggle()" *ngIf="isAuthenticated()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <h1 class="app-name">CRM Portal</h1>
+
+    <span class="toolbar-spacer"></span>
+
+    <ng-container *ngIf="isAuthenticated()">
+      <h1 class="app-name">{{authenticatedUser?.name | titlecase}}</h1>     
+      <button mat-icon-button matTooltip="Verified">
+        <mat-icon>verified_user</mat-icon>
+      </button> 
+
+      <button mat-icon-button matTooltip="Logout" (click)="onLogout()">
+        <mat-icon>power_settings_new</mat-icon>
+      </button>
+    </ng-container>
+
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+<!--LOADER-->
+<app-loader></app-loader>
+
+
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" fixedInViewport="true" fixedTopGap="0">
+    <div class="side-nav-logo">
+      <img src="../assets/logo-vsm.png" width="95"/>
+    </div>
+
+    <mat-divider style="margin: -1px 12px 12px 12px; background-color: #589265;"></mat-divider>
+
+    <!--workaround to stop focusing first element-->
+     <!-- 'absorbs' the behavior -->
+    <a mat-button style="height: 0; position: absolute;"></a>
+
+    <div class="sidenav-menu" fxLayout="column" fxLayoutAlign="start start">
+
+      <mat-accordion [multi]="true">
+        <mat-expansion-panel [expanded]="true" *ngFor="let header of menuItems()">
+          <mat-expansion-panel-header style="cursor: default;">
+            <strong>{{header.name}}</strong>
+          </mat-expansion-panel-header>
+
+          <mat-divider style="margin: -1px 12px 12px 12px; background-color: #589265;"></mat-divider>
+
+          <ng-container *ngFor="let resource of header.resources">
+            
+            <!--NO SUB-MENU-->
+            <a mat-button
+              [routerLink]="resource.path"
+              routerLinkActive="selected"
+              [routerLinkActiveOptions]="{exact: true}"  
+              (click)="sidenav.close()" *ngIf="!hasSubMenu(resource)">
+              {{resource.name}}
+            </a>
+        
+            <!--WITH SUB-MENU-->
+            <a mat-button
+              (click)="onNestedMenuClick(resource.path)"
+              [ngClass]="{'selected': isRoute(resource.path)}"
+              *ngIf="hasSubMenu(resource)"
+              style="padding-right: 2px; cursor: default;"
+              >
+              <strong>{{resource.name}}</strong>
+              <mat-icon class="side-nav-mat-icon">{{isOpenMenu(resource.path) ? 'expand_less' : 'expand_more'}}</mat-icon>                  
+            </a>
+      
+            <mat-nav-list class="side-nav-list" [ngStyle]="{'display': isOpenMenu(resource.path) ? '' : 'none'}" *ngIf="hasSubMenu(resource)">
+              <a mat-list-item
+                (click)="sidenav.close()"
+                [routerLink]="subResource.path"
+                routerLinkActive="selected"
+                [routerLinkActiveOptions]="{exact: true}"                    
+                *ngFor="let subResource of resource.resources"
+                >                    
+                {{subResource.name}}
+              </a>                
+            </mat-nav-list>
+          </ng-container>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="container" style="min-width: 100%; max-width: 100%; margin-top: 17px;">
+      <div class="row">
+        <div class="col">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

@@ -1,0 +1,27 @@
+* {
+  &:active,
+  :focus {
+    outline: none !important; // 1
+  }
+}
+
+label {
+  margin-bottom: 0; // 2
+}
+
+a:not(.mat-button):not(.mat-raised-button):not(.mat-fab):not(.mat-mini-fab):not([mat-list-item]) {
+  color: #3f51b5; // 3
+}
+
+.mat-pseudo-checkbox-checked::after {
+  width: 10px !important;
+  height: 4px !important;
+}
+
+.mat-menu-content {
+  fa-icon {
+    position: relative;
+    top: 2px;
+    left: 4px;
+  }
+}

@@ -1,0 +1,84 @@
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar-row {
+  height: 56px;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 56px;
+}
+
+.mat-toolbar.mat-primary {
+  background: #015f3d;
+}
+
+.app-name {
+  margin-left: 8px;
+}
+
+.sidenav-container {
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  z-index: unset;
+}
+
+.mat-sidenav {
+  background-color: #015f3d;
+  width: 200px;
+}
+
+.sidenav-menu a {
+  width: 100%;
+  text-align: left;
+  color: #fff;
+}
+
+.side-nav-list.mat-nav-list {
+  padding-top: 0;
+  width: 100%;
+}
+
+.side-nav-list.mat-nav-list a {
+  font-size: 15px;
+  padding-left: 10px;
+  height: 38px;
+}
+
+.side-nav-logo {
+  height: 57px;
+  padding-top: 10px;
+  padding-left: 12px;
+}
+
+.mat-list-item {
+  color: #fff;
+}
+
+.mat-button {
+  border-radius: 0;
+}
+
+.side-nav-mat-icon {
+  margin-top: 8px;
+  float: right;
+}
+
+.selected-header {
+  background-color: #91b572;
+}
+
+.selected {
+  background-color: #91b572;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+.mat-expansion-panel {
+  background-color: #589265;
+}
+

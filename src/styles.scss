@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'styles-variables.scss';
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/reboot";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/utilities"; // add css utilities
+@import '../node_modules/bootstrap/scss/bootstrap-reboot.scss';
+@import '../node_modules/bootstrap/scss/bootstrap-grid.scss';
+
+@import 'styles-reset.scss';
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.mat-expansion-panel-body {
+  padding: 0 0 0 0 !important;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 10px 0 10px !important;
+  color: #FFF;
+}
+
+.mat-expansion-indicator::after {
+  color: #FFF;
+}
+
+.mat-raised-button.mat-button-icon {
+  min-width: 48px; 
+  padding: 0
+}
+
+.mat-raised-button.mat-primary {
+  background-color: #015f3d;
+}

@@ -1,0 +1,38 @@
+// .mat-tree-node {
+//   min-height: 40px;
+// }
+
+// .mat-icon-button {
+//   height: 33px;
+// }
+
+// .mat-icon-button .mat-icon {
+//   line-height: 15px;
+// }
+.form-container > * {
+  width: 100%;
+}
+
+.tree-invisible {
+  display: none;
+}
+
+.tree ul,
+.tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  margin-top: 5px;
+}
+
+.is-loading ::ng-deep .mat-option-text {
+  display: flex;
+  justify-content: center;
+}
