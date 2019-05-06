@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { CrmRoutingModule } from './crm-routing.module';
 import { ClienteService } from './service/cliente.service';
-
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -20,7 +20,8 @@ import { ClienteService } from './service/cliente.service';
         CrmRoutingModule
     ],
     providers: [
-        ClienteService
+        ClienteService,
+        DatePipe
     ]
 })
 export class CrmModule { }

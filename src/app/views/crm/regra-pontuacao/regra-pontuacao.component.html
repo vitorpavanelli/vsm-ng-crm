@@ -1,16 +1,20 @@
+<div class="row">
 
-<div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"*ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>    
   </div>
 
-  <div class="example-table-container">
-
-    <table mat-table [dataSource]="data" class="example-table">
-      
+  <div class="col">
+    <button mat-fab color="primary" (click)="onAdd()" style="float: right; margin-bottom: 15px;">Novo</button>
+    <table mat-table [dataSource]="data">
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button color="primary" matTooltip="Editar" (click)="onEdit(row)">
+              <mat-icon aria-label="Editar">edit</mat-icon>
+          </button>
+          {{row.id}}
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="valorInicio">
@@ -41,7 +45,52 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-  </div>
+  
 
   <mat-paginator [length]="resultsLength" [pageSize]="20"></mat-paginator>
+
 </div>
+
+<div class="col-2" *ngIf="isEditing">
+    <form [formGroup]="form">
+      <mat-form-field>        
+        <input matInput placeholder="ID" readonly formControlName="id">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput type="number" placeholder="Valor Início" required formControlName="valorInicio">
+        <mat-error *ngIf="form.get('valorInicio').touched && form.get('valorInicio').hasError('required')">Mandatório</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput type="number" placeholder="Valor Fim" required formControlName="valorFim">
+        <mat-error *ngIf="form.get('valorFim').touched && form.get('valorFim').hasError('required')">Mandatório</mat-error>
+      </mat-form-field>  
+      
+      <mat-form-field>
+        <input matInput placeholder="Início" required formControlName="inicio" [matDatepicker]="inicioPicker" (dateChange)="inicioDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="inicioPicker"></mat-datepicker-toggle>
+        <mat-datepicker #inicioPicker disabled="false"></mat-datepicker>
+        <mat-error *ngIf="form.get('inicio').touched && form.get('inicio').hasError('required')">Mandatório</mat-error>      
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Fim" required formControlName="fim" [matDatepicker]="fimPicker" (dateChange)="fimDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="fimPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fimPicker disabled="false"></mat-datepicker>
+        <mat-error *ngIf="form.get('fim').touched && form.get('fim').hasError('required')">Mandatório</mat-error>   
+      </mat-form-field>
+  
+      <mat-form-field>
+        <input matInput type="number" placeholder="Pontos" required formControlName="pontos">
+        <mat-error *ngIf="form.get('pontos').touched && form.get('pontos').hasError('required')">Mandatório</mat-error>      
+      </mat-form-field>
+  
+      <button type="submit" mat-raised-button color="primary" [disabled]="!form.valid" (click)="onSave()" style="margin-right: 10px;">Salvar</button>
+      <button mat-raised-button color="seconday"  (click)="onCancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+
+
